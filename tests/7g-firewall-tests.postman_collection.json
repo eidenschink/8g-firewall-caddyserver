@@ -1,0 +1,70 @@
+{
+	"info": {
+		"name": "7g-firewall-tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "bad_query",
+			"item": [
+				{
+					"name": "Path traversal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followRedirects": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost/get-files?file=/etc/passwd",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"get-files"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": "/etc/passwd"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bad_request",
+			"item": []
+		},
+		{
+			"name": "bad_bot",
+			"item": []
+		},
+		{
+			"name": "bad_referer",
+			"item": []
+		},
+		{
+			"name": "bad_method",
+			"item": []
+		}
+	]
+}

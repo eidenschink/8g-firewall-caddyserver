@@ -1,0 +1,10 @@
+
+localhost
+
+import examples/7g-caddy.snippet
+import examples/7g-debug.snippet
+
+root * html/*
+
+file_server
+
