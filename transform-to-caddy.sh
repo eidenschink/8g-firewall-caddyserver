@@ -54,7 +54,7 @@ cat "$1" | sed -r '
     # but to follow the spirit of the original script we keep it.
     s/\$request_method/\{method\}/
     s/\$not_allowed_method_7g/\{not_allowed_method_7g\}/
-    s/\"~\*\^\(([a-zA-Z]+)\)\" ([1-9]);/~(?i)\1 \2 -/
+    s/\"~\*\^\(([a-zA-Z]+)\)\" ([1-9]);/~(?i)\1 \2 1/
 
     # transforms most of the regexp lines
     s/\"~\*(.*)\" ([0-9]+);/~(?i)\1 \2 1/
