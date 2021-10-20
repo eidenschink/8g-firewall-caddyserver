@@ -1,16 +1,17 @@
 
 #
-# Include these only during testing and debugging
+# Include and adapt this snippet for
+# testing purposes only.
 #
 
-header 7gquery {bad_query_string_7g}
-header 7gbadrequest {bad_request_uri_7g}
-header 7gbadbot {bad_http_user_agent_7g}
-header 7gbadhost {bad_remote_host_7g}
-header 7gbadreferer {bad_http_referer_7g}
+header X-7G-query {bad_query_string_7g}
+header X-7G-badrequest {bad_request_uri_7g}
+header X-7G-badbot {bad_http_user_agent_7g}
+header X-7G-badhost {bad_remote_host_7g}
+header X-7G-badreferer {bad_http_referer_7g}
 
-header x-query {query}
-header x-uri {uri}
-header x-useragent {header.user-agent}
-header x-referer {header.referer}
-header x-method {method}
+#header X-query {query}
+#header X-uri {uri}
+#header X-useragent {header.user-agent}
+#header X-referer {header.referer}
+#header X-method {method}

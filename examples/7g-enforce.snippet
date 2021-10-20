@@ -1,0 +1,10 @@
+@7g_fired expression `int({bad_query_string_7g}) > 0
+|| int({bad_request_uri_7g}) > 0
+|| int({bad_http_user_agent_7g}) > 0
+|| int({bad_remote_host_7g}) > 0`
+
+#
+# Use appropriate status code
+#
+respond @7g_fired "Not allowed" 403
+respond @bad_request_method_7g "Not allowed" 405

@@ -1,10 +1,13 @@
-
 localhost
 
 import examples/7g-caddy.snippet
-import examples/7g-debug.snippet
+import examples/7g-enforce.snippet
+
+# Use the debug snippet to inspect the matching
+# elements via response headers:
+#
+# import examples/7g-debug.snippet
 
 root * html/*
 
 file_server
-
