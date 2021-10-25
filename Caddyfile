@@ -8,6 +8,6 @@ import examples/7g-enforce.snippet
 #
 # import examples/7g-debug.snippet
 
-root * html/*
+root * html
 
 file_server
