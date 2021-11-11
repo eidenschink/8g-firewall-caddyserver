@@ -7,7 +7,7 @@ At the time being the current work is based on version 1.4 of the firewall file.
 
 ## Prerequisite
 
-For the map directive to work [you need to build the latest Caddyserver](https://caddyserver.com/docs/build). (Background see [Fix regex mappings](https://github.com/caddyserver/caddy/commit/95c035060f66577f52158312c75ca379d7ddc21e) and [this post](https://caddy.community/t/map-directive-and-regular-expressions/13866)).
+For the map directive to work you need the latest [Caddyserver](https://github.com/caddyserver/caddy/releases/tag/v2.4.6).
 
 ## How to use
 
