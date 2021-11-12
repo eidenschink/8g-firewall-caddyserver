@@ -4,7 +4,7 @@
  * Transform the original 7G-Firewall.txt file for Apache
  * into Caddy maps.
  *
- * Tested with 7G FIREWALL v1.4 20210821 (see https://perishablepress.com/7g-firewall/)
+ * Tested with 7G FIREWALL v1.5 20211103 (see https://perishablepress.com/7g-firewall/)
  */
 $firewall = file_get_contents( '7G-Firewall.txt' );
 
