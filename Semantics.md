@@ -1,11 +1,11 @@
-# NGINX server variables and their replacement
+# Apache mod_rewrite variables and their replacement
 
-* [alphabetical list of NGINX server variables](http://NGINX.org/en/docs/varindex.html)
+* [mod_rewrite Documentation](https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html)
 * [placeholder list of Caddyserver http module](https://caddyserver.com/docs/modules/http)
 
-For the maps and the regex patterns to work as originally intended it is necessary to use a correct Caddyserver equivalent.
+For the maps and the regex patterns to work as originally intended it is necessary to use a correct Caddy equivalent.
 
-## Caddyserver test
+## Caddy test
 
 When including the `7g-debug.snippet` this request:
 
@@ -13,45 +13,39 @@ When including the `7g-debug.snippet` this request:
 curl -H "Referer: https://developer.mozilla.org/en-US/docs/Web/JavaScript" -I https://localhost/some/path/index.php\?foo\=bar\&bar\=encodedampersand%26
 ```
 
-results in
+results in (something like)
 
 ```
 x-method: HEAD
+x-path: /some/path/index.php
 x-query: foo=bar&bar=encodedampersand%26
 x-referer: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 x-uri: /some/path/index.php?foo=bar&bar=encodedampersand%26
 x-useragent: curl/7.64.1
 ```
 
-### NGINX $query_string
+### %{QUERY_STRING}
 
-[NGINX $query_string](http://nginx.org/en/docs/http/ngx_http_core_module.html#var_query_string) says _arguments in the request line_
+Replaced in the snippet for Caddy by **{query}**
 
-Replaced in the snippet for Caddyserver by **{query}**
+### %{REQUEST_URI}
 
-### NGINX $request_uri
+Replaced in the snippet for Caddy by **{path}**
 
-* Clarify "request uri"? E.g. [rfc](https://www.rfc-editor.org/rfc/rfc3986#section-3) path+query+fragment or scheme+authority+path+query-fragment? (it is path+query+fragment)
-* in NGINX $request_uri is not normalized (as opposed to NGINX $uri = _current URI in request, normalized_)
+We should really work here with only the path, no query or even the fragment.
 
-[NGINX $request_uri](https://nginx.org/en/docs/http/ngx_http_core_module.html) (no direct link) says _full original request URI (with arguments)_
+### %{HTTP_USER_AGENT}
 
-Replaced in the snippet for Caddyserver by  **{uri}**
+Replaced in the snippet for Caddy by **{header.user-agent}**
+### %{HTTP_REFERER}
 
-### NGINX $http_user_agent
+Replaced in the snippet for Caddy by **{header.referer}**
+### %{REMOTE_HOST}
 
-[NGINX $http_user_agent](http://nginx.org/en/docs/http/ngx_http_core_module.html#variables) (via Embedded variables)
+Replaced in the snippet for Caddy by **{remote_host}**
 
-Replaced in the snippet for Caddyserver by **{header.user-agent}**
+### %{REQUEST_METHOD}
+Replaced in the snippet for Caddy by **{method}**
 
-### NGINX $http_referer
 
-[NGINX $http_referer](http://nginx.org/en/docs/http/ngx_http_core_module.html#variables) (via Embedded variables)
 
-Replaced in the snippet for Caddyserver by **{header.referer}**
-
-### NGINX $request_method
-
-[NGINX $request_method](http://nginx.org/en/docs/http/ngx_http_core_module.html#variables) (via Embedded variables) says _request method, usually “GET” or “POST”_
-
-Replaced in the snippet for Caddyserver by **{method}**

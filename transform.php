@@ -2,33 +2,58 @@
 /**
  *
  * Transform the original 7G-Firewall.txt file for Apache
- * into Caddyserver maps.
+ * into Caddy maps.
  *
  * Tested with 7G FIREWALL v1.4 20210821 (see https://perishablepress.com/7g-firewall/)
- *
  */
 $firewall = file_get_contents( '7G-Firewall.txt' );
 
+$version     = get_version( $firewall );
 $bad_query   = get_conditions( 'QUERY STRING', $firewall );
 $bad_uri     = get_conditions( 'REQUEST URI', $firewall );
 $bad_agent   = get_conditions( 'USER AGENT', $firewall );
 $bad_host    = get_conditions( 'REMOTE HOST', $firewall );
 $bad_referer = get_conditions( 'HTTP REFERRER', $firewall );
 
-echo '
+echo sprintf(
+	'
 # to be used as a Caddy snippet via import
 # see https://caddyserver.com/docs/caddyfile/directives/import
 
-# 7G FIREWALL v1.4 20210821
-# @ https://perishablepress.com/7g-firewall/' . PHP_EOL . PHP_EOL;
+%s
+# @ https://perishablepress.com/7g-firewall/',
+	$version
+) . PHP_EOL . PHP_EOL;
 
 echo prepare_patterns_from_rewritecond( $bad_query, 'QUERY_STRING', 'query' ) . PHP_EOL . PHP_EOL;
-echo prepare_patterns_from_rewritecond( $bad_uri, 'REQUEST_URI', 'uri' ) . PHP_EOL . PHP_EOL;
+echo prepare_patterns_from_rewritecond( $bad_uri, 'REQUEST_URI', 'path' ) . PHP_EOL . PHP_EOL;
 echo prepare_patterns_from_rewritecond( $bad_agent, 'HTTP_USER_AGENT', 'header.user-agent' ) . PHP_EOL . PHP_EOL;
 echo prepare_patterns_from_rewritecond( $bad_host, 'REMOTE_HOST', 'remote_host' ) . PHP_EOL . PHP_EOL;
 echo prepare_patterns_from_rewritecond( $bad_referer, 'HTTP_REFERER', 'header.referer' ) . PHP_EOL . PHP_EOL;
 echo '@bad_request_method_7g method CONNECT DEBUG TRACE MOVE TRACK' . PHP_EOL . PHP_EOL;
 
+/**
+ * Search for and return the firewall version indicator line.
+ *
+ * @param string $content
+ * @return string
+ */
+function get_version( &$content ) {
+	foreach ( explode( "\n", $content ) as $line ) {
+		if ( false !== stripos( $line, '# 7G FIREWALL v' ) ) {
+			return $line;
+		}
+	}
+	return '';
+}
+
+/**
+ * Look for an return certain rule sets
+ *
+ * @param string $section a section name indicator like "QUERY STRING"
+ * @param string $content the rule block that is part of the ifModule mod_rewrite condition.
+ * @return void
+ */
 function get_conditions( $section, &$content ) {
 	if ( 1 === preg_match( '/(# 7G:\[' . $section . '\]\s<IfModule mod_rewrite.c>)(.*?)(<\/IfModule>)/ms', $content, $matches ) ) {
 		return $matches[2] ?? null;
@@ -36,6 +61,17 @@ function get_conditions( $section, &$content ) {
 	return null;
 }
 
+/**
+ * Prepare a ruleset block suitable to be read by Caddy.
+ *
+ * Note that some patterns might be patched, changed, excluded to work
+ * with the Golang regular expression flavour. Suggestions welcome.
+ *
+ * @param string $line
+ * @param string $section
+ * @param string $caddy_server_var
+ * @return string
+ */
 function prepare_patterns_from_rewritecond( $line, $section, $caddy_server_var ) {
 	if ( empty( $line ) ) {
 		return '';
@@ -57,6 +93,12 @@ function prepare_patterns_from_rewritecond( $line, $section, $caddy_server_var )
    */
 	$_line = str_replace( '{2000,}', '{1000,}', $_line ); // query
 	$_line = str_replace( '(\{0\}', '# (\{0\}', $_line ); // request
+	/**
+	 * @todo Backtick is read by Caddy, but flagged by regex101.com Golang flavour.
+	 * Who is right? And more importantly, is the following transformation matching
+	 * in the intended way?
+	 */
+	$_line = str_replace( '`', '\x60', $_line ); // found in QUERY STRING + REQUEST URI
 
 	$_lines = array_map(
 		function( $row ) {
