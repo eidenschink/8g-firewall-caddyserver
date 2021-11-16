@@ -1,5 +1,5 @@
 # 7g-firewall-caddyserver
-An attempt to port the great 7G Firewall from Jeff Star to Caddy.
+An attempt to port the great 7G Firewall from Jeff Star to [Caddy](https://caddyserver.com/).
 
 At the time being the current work is based on version 1.5 of the firewall file (Apache version).
 
