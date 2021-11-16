@@ -9,7 +9,7 @@ Request inspection is done with the help of the `map` directive of Caddy. For th
 
 ## How to use
 
-Take a look at the example _Caddyfile_. It imports a snippet `examples/7g-caddy.snippet` that holds all the patterns and `examples/7g-enfoce.snippet` that aborts matched connections with a 403 or 405 status code.
+Take a look at the example _Caddyfile_. It imports a snippet `examples/7g-caddy.snippet` that holds all the patterns and `examples/7g-enforce.snippet` that aborts matched connections with a 403 or 405 status code.
 
 Feel free to create a response more pleasing to the eye but avoid redirecting or rewriting to a script that dynamically creates content and therefore further load on the server.
 
