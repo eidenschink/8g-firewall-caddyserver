@@ -5,7 +5,14 @@ At the time being the current work is based on version 1.5 of the firewall file 
 
 ## Prerequisite
 
-Request inspection is done with the help of the `map` directive of Caddy. For the map directive to work as expected in the snippets you need a [Caddy release of 2.4.6](https://github.com/Caddy/caddy/releases/tag/v2.4.6) or newer, see [Download-Page](https://caddyserver.com/download).
+Request inspection is done with the help of the `map` directive of Caddy. For the map directive to work as expected in the snippets you need a Caddy release of **2.4.6 or newer**, see [Download-Page](https://caddyserver.com/download).
+
+Note that [Caddy release 2.5.1](https://github.com/caddyserver/caddy/releases) introduced a breaking change:
+
+```
+Caddyfile: The map directive now casts outputs to the appropriate scalar type if possible (int, float, bool). If you need to force a string, you may use double quotes or backticks```
+
+The current changes in the files in the `examples/` directory make the setup work with release 2.5.1.
 
 ## How to use
 

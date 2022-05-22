@@ -106,16 +106,16 @@ function prepare_patterns_from_rewritecond( $line, $section, $caddy_server_var )
 		},
 		preg_split( '/\r\n|\r|\n/', $_line )
 	);
-	$rule   = 1;
+	$rule   = 10;
 	$out    = '';
 	foreach ( $_lines as $row ) {
 		if ( ! empty( $row ) && $row[0] === '(' ) {
-			$out .= '~(?i)' . $row . ' ' . $rule . PHP_EOL;
+			$out .= '~(?i)' . $row . ' "' . $rule . '"' . PHP_EOL;
 			$rule++;
 		}
 	}
 	if ( $out ) {
-		return 'map {' . $caddy_server_var . '} {bad_' . $mapping_variable_name . '_7g} {' . PHP_EOL . $out . PHP_EOL . 'default 0' . PHP_EOL . '}';
+		return 'map {' . $caddy_server_var . '} {bad_' . $mapping_variable_name . '_7g} {' . PHP_EOL . $out . PHP_EOL . 'default "0"' . PHP_EOL . '}';
 	}
 	return '';
 }
