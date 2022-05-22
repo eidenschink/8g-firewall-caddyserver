@@ -10,7 +10,8 @@ Request inspection is done with the help of the `map` directive of Caddy. For th
 Note that [Caddy release 2.5.1](https://github.com/caddyserver/caddy/releases) introduced a breaking change:
 
 ```
-Caddyfile: The map directive now casts outputs to the appropriate scalar type if possible (int, float, bool). If you need to force a string, you may use double quotes or backticks```
+Caddyfile: The map directive now casts outputs to the appropriate scalar type if possible (int, float, bool). If you need to force a string, you may use double quotes or backticks
+```
 
 The current changes in the files in the `examples/` directory make the setup work with release 2.5.1.
 
