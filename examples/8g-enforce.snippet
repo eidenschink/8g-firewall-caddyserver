@@ -1,0 +1,10 @@
+@8g_fired expression `int({bad_query_string_8g}) > 0
+|| int({bad_request_uri_8g}) > 0
+|| int({bad_http_user_agent_8g}) > 0
+|| int({bad_remote_host_8g}) > 0`
+
+#
+# Use appropriate status code
+#
+respond @8g_fired "Not allowed" 403
+respond @bad_request_method_8g "Not allowed" 405
