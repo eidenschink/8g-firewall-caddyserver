@@ -16,6 +16,8 @@ caddy run
 ./test-maps.sh
 
 ```
+
+```
 ...
 2024/02/16 03:12:23.739	ERROR	http.log.access.log0	handled request	{"request": {"remote_ip": "::1", "remote_port": "52540", "client_ip": "::1", "proto": "HTTP/2.0", "method": "GET", "host": "localhost", "uri": "/", "headers": {"Accept": ["*/*"], "User-Agent": ["fwdebug"], "Referer": ["https://example.com/?arg=ORDER%20BY%201--"]}, "tls": {"resumed": false, "version": 772, "cipher_suite": 4865, "proto": "h2", "server_name": "localhost"}}, "bytes_read": 0, "user_id": "", "duration": 0.000128303, "size": 11, "status": 403, "resp_headers": {"Alt-Svc": ["h3=\":443\"; ma=2592000"], "X-Firewall-Query": ["0"], "X-Firewall-Badrequest": ["0"], "X-Firewall-Baduseragent": ["0"], "X-Firewall-Badhost": ["0"], "X-Firewall-Badreferer": ["10"], "Content-Type": ["text/plain; charset=utf-8"], "Server": ["Caddy"]}}
 ...
