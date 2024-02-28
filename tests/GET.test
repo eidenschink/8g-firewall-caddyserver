@@ -1,0 +1,48 @@
+#
+# Found in the wild.
+#
+/?a=fetch&content=%3Cphp%3Edie%28%40md5%28HelloThinkCMF%29%29%3C%2Fphp%3E
+/index.php?s=/Index/\x5Cthink\x5Capp/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21
+/cgi-bin/.%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/hosts
+/.env
+///remote/fgt_lang?lang=/../../../..//////////dev/
+/owa/auth/logon.aspx?url=https%3a%2f%2f1%2fecp%2f
+/wp/wp-config%20fix.txt
+/wp/wp-config.bak
+/wp/wp-config.php~
+/wp-json/oembed/1.0/embed?url=https%3a%2f%2fwww.example.com%2f
+/site/wp-config.php~
+/owa/auth/logon.aspx?url=https%3a%2f%2f1%2fecp%2f
+
+#
+# Built.
+#
+/mysql/
+/index.php?s=mkdir+%2Ftmp%2F.hidden%2Fasdf
+/wp-admin/tools.php?s=rm+-f+%2Fetc%2Fpasswd
+/examples/,,,
+
+#
+# Should not be blocked.
+#
+/wp-login.php?redirect_to=https%3A%2F%2Fwww.example.com%2Fwp-admin%2F&reauth=1
+# But note that WordPress *itself* returns 403 on this request:
+/wp-login.php?action=logout&_wpnonce=0de2f0d2b2
+
+#
+# Other CMS related.
+#
+/config/config.inc.php
+/setup/fixtures.sql
+/config/countrycodes.ini
+/README.md
+/.htaccess
+
+#
+# Things you want to see to work.
+#
+/?app=appupdate&method=latestrelease&release=5.1&appref=http%3A%2F%2Fexample.com
+/?app=appupdate&amp;method=latestrelease&amp;release=5.1&amp;appref=http%3A%2F%2Fexample.com
+/examples/
+
+

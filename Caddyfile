@@ -6,7 +6,12 @@ import examples/8g-enforce.snippet
 # Use the debug snippet to inspect the matching
 # elements via response headers:
 #
-#import examples/8g-debug.snippet
+import examples/firewall-debug.snippet
+
+log {
+    output stderr
+    format console
+}
 
 root * html
 

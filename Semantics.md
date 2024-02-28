@@ -44,6 +44,8 @@ Replaced in the snippet for Caddy by **{header.referer}**
 
 Replaced in the snippet for Caddy by **{remote_host}**
 
+Note: Without a special module **remote_host** from Caddy might just return the IP address not the reverse looked up domain that the firewall rules try to match.
+
 ### %{REQUEST_METHOD}
 Replaced in the snippet for Caddy by **{method}**
 

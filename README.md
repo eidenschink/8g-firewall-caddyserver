@@ -41,7 +41,8 @@ php transform-8g.php > examples/8g-caddy.snippet
 ## Todo and bugs
 
 - [ ] find an equivalent for two patterns that either not compile or differ in regex flavor/nuances (see comments in transform.php)
-- [ ] write tests for every section to make sure the patterns match what they are supposed to match (AFAIK there is currently no test suite for the rules)
+- [ ] write tests for every section to make sure the patterns match what they are supposed to match (AFAIK there is currently no test suite for the rules. Update: A tiny start can be found in the tests directory.)
+- [ ] The **remote_host** map is of no use until a variable is used (from an external module?) that does a reverse lookup of the requesting IP address, as strings are matched by the firewall
 - [x] provide a HTTP status code 403 snippet that matches (is triggered by) the mapped variables
 
 **Variables:**

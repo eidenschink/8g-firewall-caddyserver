@@ -1,0 +1,8 @@
+#
+# The following lines are put 1:1 as a curl header, be careful.
+#
+
+Cookie:
+Cookie: token="abcd"; path="/"; 
+Cookie: token="a%00bcd"; path="/"; 
+Cookie: token="a%00bcd";%00 path="/"; 

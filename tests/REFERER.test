@@ -1,0 +1,15 @@
+#
+# The following lines are put 1:1 as a curl header, be careful.
+#
+
+# Some good.
+Referer: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+Referer: https://example.com/page?q=123
+Referer: https://example.com/
+
+# Some bad.
+Referer: https://libidomegasellexample.com/
+Referer: https://xanaxdiscounter.com/
+Referer: https://example.com/?arg=ORDER%20BY%201--
+
+
